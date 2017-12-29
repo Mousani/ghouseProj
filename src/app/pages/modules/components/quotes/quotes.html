@@ -1,0 +1,104 @@
+<div class="widgets">
+    <div class="row" [hidden]="addNewQuote || viewQuoteStatus">
+        <ba-card title="Basic Example" baCardClass="with-scroll" class="data-table-container" class="col-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">Quotes information</div>
+
+                <table class="table table-striped" [mfData]="data | quotesDataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                    [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="col-12">
+                                <!--Search:-->
+                                <!--<input class="form-control" [(ngModel)]="filterQuery" />-->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input class="form-control" [(ngModel)]="filterQuery" placeholder="Search" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="label-control">&nbsp;&nbsp;&nbsp;</label>
+                                        <button type="submit" class="btn btn-primary" (click)="addNewQuote = !addNewQuote;quoteParts = [];">Add New</button>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbQuoteNumber">Quote #
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbContactNumber">Contact #
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbOrderDate">Order Date
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <!-- <th style="text-align:center">
+                                <mfDefaultSorter by="dbPaid">Paid
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th> -->
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of mf.data">
+                            <!--<td>
+                                <button (click)="remove(item)" class="btn btn-danger">x</button>
+                            </td>-->
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setQuote(item)">{{item.dbQuoteNumber}}</a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setQuote(item)">{{item.dbContactNumber}}</a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setQuote(item)">{{toDate(item.dbOrderDate)}}</a>
+                            </td>
+                            <!-- <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setInvoice(item)">{{(item.dbPaid==0)?"No":"Yes"}}</a>
+                            </td> -->
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </ba-card>
+
+
+
+
+    </div>
+    <quote [hidden]="!addNewQuote" [(addNewQuote)]="addNewQuote" [(quoteEdit)]="quote" [(arrayOfStrings)]="arrayOfStrings"></quote>
+
+
+    <div class="row" [hidden]="!viewQuoteStatus">
+        <div class="col-lg-12 col-md-12">
+            <ba-card cardTitle="Quote Details" baCardClass="with-scroll table-panel" rightIcon="add-item-icon ion-edit">
+                <view-quote [(quote)]="quote" [(viewQuoteStatus)]="viewQuoteStatus"></view-quote>
+                <button class="btn btn-danger right" type="button" (click)="viewQuoteStatus = !viewQuoteStatus;">Back</button>
+                <button class="btn btn-primary right" type="button" (click)="editQuote(quote)">Edit</button>
+            </ba-card>
+        </div>
+    </div>
+    <div class="row" [hidden]="!viewQuoteStatus && !addNewQuote">
+        <div class="col-lg-12 col-md-12">
+            <ba-card cardTitle="Parts Details" baCardClass="with-scroll table-panel">
+                <quote-parts [(quoteParts)]="quoteParts" [(viewQuoteStatus)]="viewQuoteStatus"></quote-parts>
+                <button class="btn btn-danger right" type="button" (click)="viewQuoteStatus = false;addNewQuote = false;">Back</button>
+                <button class="btn btn-primary right" type="button" [hidden]="!addNewQuote" (click)="addPart()">Add Part</button>
+            </ba-card>
+        </div>
+    </div>

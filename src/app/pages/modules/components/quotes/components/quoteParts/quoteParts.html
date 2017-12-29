@@ -1,0 +1,32 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th >Quote#</th>
+      <th >P/F</th>
+      <th >Description</th>
+      <th >Qty</th>
+      <th class="">Unit</th>
+      <th >Unit Cost</th>
+      <th class="">Note</th>
+      <th class="">Not Discounted</th>
+      <th class="">Tax Exempt</th>
+      <th class="">Extended Cost</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let quotePart of quoteParts; let i = index" class="no-top-border">
+        <td>{{quotePart.dbPartNumber}}</td>
+        <td class=""></td>
+        <td class="">{{quotePart.dbDescription}}</td>
+        <td class="align-center">{{quotePart.dbQty}}</td>
+        <td class=""></td>
+        <td class="">{{quotePart.dbUnitCost | currency:'USD':true}}</td>
+        <td class="">{{quotePart.dbNote}}</td>
+        <td class="align-center"><input type="checkbox" [(ngModel)]="quotePart.dbNotDiscounted" name="dbNotDiscounted_{{i}}"></td>
+        <td class="align-center"><input type="checkbox"></td>
+        <td class="">{{quotePart.dbExtendedCost | currency:'USD':true}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

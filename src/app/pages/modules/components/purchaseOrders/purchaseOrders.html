@@ -1,0 +1,78 @@
+<div class="widgets">
+    <div class="row" [hidden]="addNewPO || viewPOStatus">
+        <ba-card title="Basic Example" baCardClass="with-scroll" class="data-table-container">
+            
+            <div class="panel panel-default">
+                <div class="panel-heading"></div>
+
+                <table class="table table-striped" [mfData]="data | purchaseOrdersDataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="col-12">
+                                <!--Search:-->
+                                <!--<input class="form-control" [(ngModel)]="filterQuery" />-->
+                                 <div class="row">
+                                    <div class="col-sm-3">
+                                        <input class="form-control" [(ngModel)]="filterQuery" placeholder="Search"/>
+                                    </div>
+                                    <div class="col-sm-2">
+                                            <label class="label-control">&nbsp;&nbsp;&nbsp;</label>
+                                            <button type="submit" class="btn btn-primary" (click)="addNewPO = !addNewPO;">Add New</button>
+                                        </div>
+                                 </div>
+                            </th>
+                        </tr>
+                        
+                        <tr>
+                            <th style="width: 10%;text-align:center">
+                                <mfDefaultSorter by="dbPurchaseOrderNumber">Purchase Order# <i class="fa fa-sort" aria-hidden="true"></i></mfDefaultSorter>
+                            </th>
+                            <th style="width: 30%;text-align:center">
+                                <mfDefaultSorter by="dbPurchaseDate">Purchase Date<i class="fa fa-sort" aria-hidden="true"></i></mfDefaultSorter>
+                            </th>
+                            <th style="width: 40%;text-align:center">
+                                <mfDefaultSorter by="dbVendorNumber">Vendor <i class="fa fa-sort" aria-hidden="true"></i></mfDefaultSorter>
+                            </th>
+                            <th style="width: 10%;text-align:center">
+                                <mfDefaultSorter by="dbReceived">Received <i class="fa fa-sort" aria-hidden="true"></i></mfDefaultSorter>
+                            </th>
+                            
+                        </tr>
+                        
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of mf.data">
+                            <!--<td>
+                                <button (click)="remove(item)" class="btn btn-danger">x</button>
+                            </td>-->
+                            <td style="text-align:center"><a href="JavaScript:void(0);"  (click)="setPO(item)">{{item.dbPurchaseOrderNumber}}</a></td>
+                            <td style="text-align:center"><a href="JavaScript:void(0);"  (click)="setPO(item)">{{item.dbPurchaseDate | date: 'dd/MM/yyyy'}}</a></td>
+                            <td style="text-align:center"><a href="JavaScript:void(0);"  (click)="setPO(item)">{{item.dbVendorNumber}}</a></td>
+                            <td style="text-align:center"><a href="JavaScript:void(0);"  (click)="setPO(item)">{{item.dbReceived}}</a></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </ba-card>
+        
+        
+    </div>
+
+    <new-po [hidden]="!addNewPO"  [(addNewPO)]="addNewPO"></new-po>
+    <div class="row"  [hidden]="!viewPOStatus"  >
+        <div class="col-lg-6 col-md-12">
+          <ba-card cardTitle="Purchase Order Details" baCardClass="with-scroll table-panel">
+            <view-purchase-order [(PO)]="PO" [(viewPOStatus)]="viewPOStatus"></view-purchase-order>
+            <button class="btn btn-danger right" type="button" (click)="viewPOStatus = !viewPOStatus;backToList();">Back</button>
+            <!-- <button class="btn btn-primary right" type="button" (click)="editContact(contact, addressOfContact)">Edit</button> -->
+          </ba-card>
+        </div>
+    </div>
+</div>

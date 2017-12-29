@@ -1,0 +1,155 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modalHeader}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">Address Label</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbAddressLabel" name="dbAddressLabel" placeholder="Address Label">
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputLastName">Title</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbTitle" name="dbTitle" placeholder="Title">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">First Name</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbFirstName" name="dbFirstName" placeholder="First Name">
+          </div>
+        </div>
+
+
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputLastName">Last Name</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbLastName" name="dbLastName" placeholder="Last Name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName">Company</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbCompany" name="dbCompany" placeholder="Company">
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName">Business Title</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbBusinessTitle" name="dbBusinessTitle" placeholder="Business Title">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="inputLastName">Address</label>
+            <textarea class="form-control form-control-sm" style="height:60px;" placeholder="Address" [(ngModel)]="address.dbAddress" name="dbAddress"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputLastName">City</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbCity" name="dbCity" placeholder="City">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">State</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbState" name="dbState" placeholder="State">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">Province</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbProvince" name="dbProvince" placeholder="Province">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName">Country</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbCountry" name="dbCountry" placeholder="Country">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName">Zip</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbZip" name="dbZip" placeholder="Zip">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="add-element">Emails
+            <a href="JavaScript:void(0);" (click)="addElement(address, 'dbEmails');" class="add-element">
+              <i class="add-item-icon ion-plus"></i>
+            </a>
+          </label>
+        </div>
+      </div>
+      <div class="row" *ngFor="let email of address.dbEmails; let i = index;trackBy:trackByIndex">
+          <div class="col-sm-10">
+            <div class="form-group">
+              <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbEmails[i]" name="email{{i}}" placeholder="Email">
+            </div>
+          </div>
+          <div class="col-sm-1" [hidden] = "i == 0 && address.dbEmails.length == 1">
+            <div class="form-group">
+                <button class="btn btn-danger btn-icon re-size" type="button" (click)="deleteElement(address, 'dbEmails', i);">
+                <i class="ion-minus"></i>
+              </button>
+            </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-sm-6">
+            <label class="add-element">Phones
+              <a href="JavaScript:void(0);" (click)="addElement(address, 'dbPhoneNumbers');" class="add-element">
+                <i class="add-item-icon ion-plus"></i>
+              </a>
+            </label>
+          </div>
+        </div>
+        <div class="row" *ngFor="let phone of address.dbPhoneNumbers; let i = index;trackBy:trackByIndex">
+            <div class="col-sm-10">
+              <div class="form-group">
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="address.dbPhoneNumbers[i]" name="phone{{i}}" placeholder="Phone Number">
+              </div>
+            </div>
+            <div class="col-sm-1" [hidden] = "i == 0 && address.dbPhoneNumbers.length == 1">
+              <div class="form-group">
+                <button class="btn btn-danger btn-icon re-size" type="button" (click)="deleteElement(address, 'dbPhoneNumbers', i);">
+                  <i class="ion-minus"></i>
+                </button>
+              </div>
+            </div>
+        </div>
+  
+
+      <!-- <button type="submit" class="btn btn-danger">Submit</button> -->
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Save changes</button>
+  </div>
+</div>

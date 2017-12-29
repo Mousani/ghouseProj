@@ -1,0 +1,37 @@
+@import '../../../../../../theme/sass/conf/conf';
+
+.modal-buttons .btn {
+  margin-right: 20px;
+}
+
+.modal-content {
+  color: $dropdown-text;
+}
+.td-key {
+  text-align: left;
+  width: 30%;
+}
+.td-value {
+  width:70%;
+}
+
+.modal-content {
+  background-color: #5b5f63;
+  line-height: 0.5;
+}
+.modal-header {
+  color: #ffffff;
+}
+
+.modal-dialog {
+  max-width: 650px !important;;
+  width: 650px !important;;
+}
+
+.add-element {
+  color: white;
+}
+
+.re-size {
+  padding: 3px 10px;
+}

@@ -1,0 +1,158 @@
+<form class="form-inline">
+  <ba-card title="" cardTitle="Create New Contact" class="col-12">
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label for="input01">Contacts Company</label>
+        <select class="form-control" [(ngModel)]="contact.dbContactsCompany" name="dbContactsCompany">
+          <option value="Neoteric Hovercraft, Inc" [selected]>Neoteric Hovercraft, Inc</option>
+          <option value="Hovertechnics, LLC" title="" id="">Hovertechnics, LLC</option>
+          <option *ngFor="let contactsCompany of contactsCompanyList" [value]="contactsCompany">{{ contactsCompanyItem }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label>Title</label>
+        <select class="form-control" [(ngModel)]="contact.dbTitle" name="dbTitle">
+          <option *ngFor="let title of titles" [selected]="title.code==1" [value]="title.code">{{ title.name }}</option>
+        </select>
+      </div>
+
+      <div class="form-group col-sm-3">
+        <label for="input01">First Name</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbFirstName" name="dbFirstName">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Last Name</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbLastName" name="dbLastName">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Company</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbCompany" name="dbCompany">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label for="input01">Business Title</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbBusinessTitle" name="dbBusinessTitle">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Primary Email</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbPrimaryEmail" name="dbPrimaryEmail">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Secondary Email</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbSecondaryEmail" name="dbSecondaryEmail">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Web Address</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbWebAddress" name="dbWebAddress">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-sm-3">
+        <label for="input01">Source</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbSource" name="dbSource">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Where Use</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbWhereUse" name="dbWhereUse">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">Vehicles</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbVehicles" name="dbContactsCompany">
+      </div>
+      <div class="form-group col-sm-3">
+        <label for="input01">How Much</label>
+        <input type="text" class="form-control" [(ngModel)]="contact.dbHowMuch" name="dbHowMuch">
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbWebLook" [ngModel]="contact.dbWebLook == 'Y'" (ngModelChange)="contact.dbWebLook=$event?'Y':'N'"
+            [label]="'Web Look'" name="dbWebLook"></ba-checkbox>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbWantRec" [ngModel]="contact.dbWantRec == 'Y'" (ngModelChange)="contact.dbWantRec=$event?'Y':'N'"
+            [label]="'Want Rec'" name="dbWantRec"></ba-checkbox>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbWantCom" [ngModel]="contact.dbWantCom == 'Y'" (ngModelChange)="contact.dbWantCom=$event?'Y':'N'"
+            [label]="'Want com'" name="dbWantCom"></ba-checkbox>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbWantRes" [ngModel]="contact.dbWantRes == 'Y'" (ngModelChange)="contact.dbWantRes=$event?'Y':'N'"
+            [label]="'Want Res'" name="dbWantRes"></ba-checkbox>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbSelfAssembly" [ngModel]="contact.dbSelfAssembly == 'Y'" (ngModelChange)="contact.dbSelfAssembly=$event?'Y':'N'"
+            [label]="'Self Assembly'" name="dbSelfAssembly"></ba-checkbox>
+        </div>
+      </div>
+      <div class="form-group col-sm-2">
+        <div class="checkbox">
+          <label for="input01"> </label>
+          <ba-checkbox [(ngModel)]="contact.dbNeoAssembly" [ngModel]="contact.dbNeoAssembly == 'Y'" (ngModelChange)="contact.dbNeoAssembly=$event?'Y':'N'"
+            [label]="'Neo Assembly'" name="dbNeoAssembly"></ba-checkbox>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-sm-12">
+        <a href="JavaScript:void(0);" (click)="addAddress();" class="add-element">
+          Add New Address
+          <i class="add-item-icon ion-plus"></i>
+        </a>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-xlg-6 col-lg-6 col-md-6 col-sm-12 col-12" *ngFor="let element of address; let i = index" [hidden]="!address[i].dbFirstName">
+        <view-address-simple [(address)]="address[i]"></view-address-simple>
+      </div>
+    </div>
+    <div class="row">
+
+      <div class="form-group col-sm-12">
+        <label for="input01">Add Notes</label>
+        <textarea class="form-control" placeholder="Add Notes" [(ngModel)]="contact.dbAddNotes" name="dbAddNotes"></textarea>
+      </div>
+
+    </div>
+    <div class="row" style="float:right;">
+      <div class="form-group col-sm-4">
+        <button type="submit" class="btn btn-primary" (click)="submitContact()">Submit Changes</button>
+      </div>
+      <div class="form-group col-sm-4">
+        <button type="submit" class="btn btn-danger" (click)="createToggle()">Cancel Changes</button>
+      </div>
+      <div class="form-group col-sm-3">
+        <button type="submit" class="btn btn-danger" (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </ba-card>
+  <!-- <ba-card>
+  <div class="task-todo-container">
+    <input type="text" value="" class="form-control task-todo" placeholder="Address"  [(ngModel)]="newTodoText" name="newTodoText"/>
+    <i  class="add-item-icon ion-plus-round"></i>
+    <i  class="add-item-icon ion-edit-round"></i>
+    <div class="box-shadow-border"></div>
+  </div>
+</ba-card> -->
+</form>

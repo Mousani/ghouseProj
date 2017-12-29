@@ -1,0 +1,89 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">{{modalHeader}}</h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <form>
+      
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputLastName">Part Number </label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="part.dbPartNumber" name="dbPartNumber" placeholder="Part Number">
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group">
+            <label for="inputFirstName">Type Of Part</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="part.dbTypeOfPart" name="dbTypeOfPart" placeholder="Type Of Part">
+          </div>
+        </div>
+
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="inputLastName">Description</label>
+            <textarea class="form-control form-control-sm" style="height:60px;" placeholder="Description" [(ngModel)]="part.dbDescription" name="dbDescription"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputLastName">Quantity</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="part.dbQty" name="dbQty" placeholder="Quantity">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">Unit Cost</label>
+            <input type="text" class="form-control form-control-sm" [(ngModel)]="part.dbUnitCost" name="dbUnitCost" placeholder="Unit Cost">
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="inputFirstName">Unit</label>
+            <input type="text" class="form-control form-control-sm" placeholder="Unit">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="form-group">
+            <label for="inputLastName">Note</label>
+            <textarea class="form-control form-control-sm" style="height:60px;" placeholder="Note" [(ngModel)]="part.dbNote" name="dbNote"></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="checkbox form-group">
+            <label for="input01"> </label>
+            <ba-checkbox [(ngModel)]="part.dbNotDiscounted" [ngModel]="part.dbNotDiscounted == 'Y'" (ngModelChange)="part.dbProvince=$event?'Y':'N'"
+              [label]="'Not Discounted'" name="dbNotDiscounted"></ba-checkbox>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="checkbox form-group">
+            <label for="input01"> </label>
+            <ba-checkbox [(ngModel)]="part.dbNotDiscounted"
+              [label]="'Tax Exempt'" name="dbWebLook"></ba-checkbox>
+          </div>
+        </div>
+      </div>
+      
+
+      <!-- <button type="submit" class="btn btn-danger">Submit</button> -->
+    </form>
+
+
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary confirm-btn" (click)="closeModal()">Save changes</button>
+  </div>
+</div>

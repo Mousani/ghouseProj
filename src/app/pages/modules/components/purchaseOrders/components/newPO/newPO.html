@@ -1,0 +1,93 @@
+<form class="form-inline">
+  <ba-card title="" cardTitle="Create Purchase Order" class="col-6">
+    <div class="row">
+      <!-- <div class="row"> -->
+      <div class="form-group col-sm-6">
+        <label for="input01">Purchase Date</label>
+        <date-obj  [(date)]="newPO.dbPurchaseDate"></date-obj>
+      </div>
+      <div class="form-group col-sm-6">
+        <label for="input01">Date Required</label>
+        <date-obj class="col-sm-12" [(date)]="newPO.dbDateRequired"></date-obj>
+      </div>
+    </div>
+    <div class="row">
+        
+        <div class="form-group col-sm-6">
+            <label for="input01">Purchase Order for Company</label>
+            <select class="form-control" [(ngModel)]="newPO.dbInvoiceCompany"  name="dbInvoiceCompany">
+              <option value="Neoteric Hovercraft, Inc" [selected]>Neoteric Hovercraft, Inc</option>
+              <option value="Hovertechnics, LLC" title="" id="">Hovertechnics, LLC</option>
+            </select>
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="input01">Vendor#</label>
+              <select class="form-control" >
+                <option value="" [selected]></option>
+              </select>
+            </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-sm-12">
+          <label for="input01">Vendor#</label>
+          <select name="dbHowToShip" id="dbHowToShip" class="form-control"><option value="0" title="" id=""></option><option value="AIR MAIL" title="" id="">AIR MAIL</option><option value="FED EX GROUND or UPS GROUND" title="" id="">FED EX GROUND or UPS GROUND</option><option value="COMMON CARRIER" title="" id="">COMMON CARRIER</option><option value="COMPANY TRUCK" title="" id="">COMPANY TRUCK</option><option value="DELIVER" title="" id="">DELIVER</option><option value="FED EX GROUND" title="" id="">FED EX GROUND</option><option value="UPS" title="" id="">UPS</option><option value="DHL" title="" id="">DHL</option><option value="DROP SHIP" title="" id="">DROP SHIP</option><option value="CONTAINER" title="" id="">CONTAINER</option><option value="PICK UP" title="" id="">PICK UP</option><option value="US MAIL INSURED" title="" id="">US MAIL INSURED</option><option value="NEOTERIC TRUCK" title="" id="">NEOTERIC TRUCK</option><option value="FED EX EXPRESS AIR Account No 1135 4756 1" title="" id="">FED EX EXPRESS AIR Account No 1135 4756 1</option><option value="US MAIL REGULAR" title="" id="">US MAIL REGULAR</option><option value="US MAIL AIR" title="" id="">US MAIL AIR</option><option value="UPS 2nd DAY AIR" title="" id="">UPS 2nd DAY AIR</option><option value="SCHENKERS" title="" id="">SCHENKERS</option><option value="US Mail OVERNITE" title="" id="">US Mail OVERNITE</option><option value="USF HOLLAND" title="" id="">USF HOLLAND</option><option value="FED EX GROUND DROP SHIP" title="" id="">FED EX GROUND DROP SHIP</option><option value="AIR FREIGHT" title="" id="">AIR FREIGHT</option><option value="R&amp;L Trucking" title="" id="">R&amp;L Trucking</option><option value="US MAIL PRIORITY" title="" id="">US MAIL PRIORITY</option><option value="UPS OVERNITE" title="" id="">UPS OVERNITE</option><option value="GLOBAL EXPRESS MAIL" title="" id="">GLOBAL EXPRESS MAIL</option><option value="CONTRACT CARRIER" title="" id="">CONTRACT CARRIER</option><option value="SURFACE FREIGHT" title="" id="">SURFACE FREIGHT</option><option value="LESS THAN CONTAINER LOAD" title="" id="">LESS THAN CONTAINER LOAD</option><option value="PICKUP AND DELIVER" title="" id="">PICKUP AND DELIVER</option><option value="HELLMANN" title="" id="">HELLMANN</option><option value="None" title="" id="">None</option><option value="FED EX GROUND Account No 1135 4756 1" title="" id="">FED EX GROUND Account No 1135 4756 1</option><option value="FED EX OVERNIGHT" title="" id="">FED EX OVERNIGHT</option><option value="FED EX EXPRESS" title="" id="">FED EX EXPRESS</option><option value="UPS Ground 79T9T9" title="" id="">UPS Ground 79T9T9</option><option value="FED EX 2ND DAY" title="" id="">FED EX 2ND DAY</option></select>
+      </div>
+    </div>
+
+    <div class="row" style="float:right;">
+      <div class="form-group col-sm-4">
+        <button type="submit" class="btn btn-primary" (click)="submitInvoice()">Submit Changes</button>
+      </div>
+      <div class="form-group col-sm-4">
+        <button type="submit" class="btn btn-danger" (click)="createToggle()">Cancel Changes</button>
+      </div>
+      <div class="form-group col-sm-4">
+        <button type="submit" class="btn btn-danger" (click)="clear()">Clear</button>
+      </div>
+    </div>
+  </ba-card>
+  <ba-card class="col-6">
+      <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="input01">Ship To</label>
+            <input type="type" class="form-control"  [(ngModel)]="newPO.dbShipTo"  name="dbShipTo">
+          </div>
+          <div class="form-group col-sm-6">
+              <label for="input01">Shipping Cost</label>
+              <input type="type" class="form-control"  [(ngModel)]="newPO.dbActualShippingCost"  name="dbActualShippingCost">
+          </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-sm-6">
+              <label for="input01">Date Sent</label>
+              <date-obj  [(date)]="newPO.dbDateSent"></date-obj>
+            </div>
+            <div class="form-group col-sm-6">
+              <label for="input01">Actual Shipping Cost</label>
+              <input type="type" class="form-control" [(ngModel)]="newPO.dbActualShippingCost" name="dbActualShippingCost">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="input01">Tax</label>
+              <input type="type" class="form-control" [(ngModel)]="newPO.dbTax" name="dbTax">
+            </div>
+          </div>
+          
+    <div class="row">
+      <div class="form-group col-sm-12">
+        <label for="input01">Notes </label>
+        <textarea class="form-control" placeholder="Notes" [(ngModel)]="newPO.dbNotes" name="dbNotes"></textarea>
+      </div>
+    </div>
+   
+  </ba-card>
+  <!-- <ba-card>
+  <div class="task-todo-container">
+    <input type="text" value="" class="form-control task-todo" placeholder="Address"  [(ngModel)]="newTodoText" name="newTodoText"/>
+    <i  class="add-item-icon ion-plus-round"></i>
+    <i  class="add-item-icon ion-edit-round"></i>
+    <div class="box-shadow-border"></div>
+  </div>
+</ba-card> -->
+</form>

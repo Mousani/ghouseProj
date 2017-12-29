@@ -1,0 +1,36 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+    <thead>
+    <tr class="black-muted-bg">
+      <th >Part#</th>
+      <th >P/F</th>
+      <th >Description</th>
+      <th >Qty</th>
+      <th class="">Unit</th>
+      <th >Unit Cost</th>
+      <th class="">Note</th>
+      <th class="">Not Discounted</th>
+      <th class="">Tax Exempt</th>
+      <th class="">Extended Cost</th>
+      <th class=""></th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoicePart of invoiceParts; let i = index" class="no-top-border">
+        <td>{{invoicePart.dbPartNumber}}</td>
+        <td class=""></td>
+        <td class="">{{invoicePart.dbDescription}}</td>
+        <td class="align-center">{{invoicePart.dbQty}}</td>
+        <td class=""></td>
+        <td class="">{{invoicePart.dbUnitCost | currency:'USD':true}}</td>
+        <td class="">{{invoicePart.dbNote}}</td>
+        <td class="align-center"><input type="checkbox" [(ngModel)]="invoicePart.dbNotDiscounted" name="dbNotDiscounted_{{i}}"></td>
+        <td class="align-center"><input type="checkbox"></td>
+        <td class="">{{invoicePart.dbExtendedCost | currency:'USD':true}}</td>
+        <td class=""><button class="btn btn-danger btn-icon re-size" type="button" (click)="deleteElement(i);">
+          <i class="ion-minus"></i>
+        </button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

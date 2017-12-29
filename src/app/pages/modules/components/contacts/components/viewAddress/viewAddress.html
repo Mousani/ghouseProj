@@ -1,0 +1,36 @@
+<div class="horizontal-scroll">
+  <table class="table table-hover">
+
+    <tbody>
+      <tr class="no-top-border"> </tr>
+      <tr [hidden]="!address.dbAddressLabel" class="no-top-border">
+        <td></td>
+        <td class="td-key">{{labels['dbAddressLabel']}} :</td>
+        <td class="td-value">{{address.dbAddressLabel}}</td>
+      </tr>
+      <tr class="no-top-border">
+        <td></td>
+        <td class="td-key">Name :</td>
+        <td class="td-value">{{address.dbTitle}} {{address.dbFirstName}} {{address.dbLastName}}</td>
+      </tr>
+      <!-- <tr class="no-border">
+        <td></td>
+        <td class="td-key ">Full Address :</td>
+        <td></td>
+      </tr>
+      <tr >
+        <td class="no-border"></td>
+        <td  colspan="2" class="no-border">{{address.dbCompany}} {{address.dbCity}} {{address.State}} {{address.Country}}
+            ZIP: {{address.dbZip}} Email: {{address.dbEmail}}
+        </td>
+      </tr> -->
+      <tr class="no-top-border">
+        <td></td>
+        <td class="td-key">Full Address :</td>
+        <td class="td-value">{{address.dbAddress}} {{address.dbCity}}, {{address.dbState}}, {{address.dbCountry}} {{address.dbZip}} 
+          <!-- {{((address.dbEmail)?" Email: "+address.dbEmail:"")}} -->
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

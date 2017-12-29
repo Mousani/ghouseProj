@@ -1,0 +1,104 @@
+<div class="widgets">
+    <div class="row" [hidden]="addNewInvoice || viewInvoiceStatus">
+        <ba-card title="Basic Example" baCardClass="with-scroll" class="data-table-container" class="col-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">Invoices information</div>
+
+                <table class="table table-striped" [mfData]="data | invoiceDataFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="rowsOnPage"
+                    [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+                    <thead>
+                        <tr>
+                            <th colspan="4" class="col-12">
+                                <!--Search:-->
+                                <!--<input class="form-control" [(ngModel)]="filterQuery" />-->
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <input class="form-control" [(ngModel)]="filterQuery" placeholder="Search" />
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="label-control">&nbsp;&nbsp;&nbsp;</label>
+                                        <button type="submit" class="btn btn-primary" (click)="addNewInvoice = !addNewInvoice;invoiceParts = [];">Add New</button>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+
+                        <tr>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbInvoiceNumber">Invoice #
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbContactNumber">Contact #
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbDateOrderReceived">Order Date
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                            <th style="text-align:center">
+                                <mfDefaultSorter by="dbPaid">Paid
+                                    <i class="fa fa-sort" aria-hidden="true"></i>
+                                </mfDefaultSorter>
+                            </th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of mf.data">
+                            <!--<td>
+                                <button (click)="remove(item)" class="btn btn-danger">x</button>
+                            </td>-->
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setInvoice(item)">{{item.dbInvoiceNumber}}</a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setInvoice(item)">{{item.dbContactNumber}}</a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setInvoice(item)">{{toDate(item.dbDateOrderReceived)}}</a>
+                            </td>
+                            <td style="text-align:center">
+                                <a href="JavaScript:void(0);" (click)="setInvoice(item)">{{(item.dbPaid==0)?"No":"Yes"}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">
+                                <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </ba-card>
+
+
+
+
+    </div>
+    <invoice [hidden]="!addNewInvoice" [(addNewInvoice)]="addNewInvoice" [(invoiceEdit)]="invoice" [(arrayOfStrings)]="arrayOfStrings"></invoice>
+
+
+    <div class="row" [hidden]="!viewInvoiceStatus">
+        <div class="col-lg-12 col-md-12">
+            <ba-card cardTitle="Invoice Details" baCardClass="with-scroll table-panel" rightIcon="add-item-icon ion-edit">
+                <view-invoice [(invoice)]="invoice" [(viewInvoiceStatus)]="viewInvoiceStatus"></view-invoice>
+                <button class="btn btn-danger right" type="button" (click)="viewInvoiceStatus = !viewInvoiceStatus;">Back</button>
+                <button class="btn btn-primary right" type="button" (click)="editInvoice(invoice)">Edit</button>
+            </ba-card>
+        </div>
+    </div>
+    <div class="row" [hidden]="!viewInvoiceStatus && !addNewInvoice">
+        <div class="col-lg-12 col-md-12">
+            <ba-card cardTitle="Parts Details" baCardClass="with-scroll table-panel">
+                <invoice-parts [(invoiceParts)]="invoiceParts" (addNewChange)="addPartToList($event)" [(viewInvoiceStatus)]="viewInvoiceStatus"></invoice-parts>
+                <button class="btn btn-danger right" type="button" (click)="viewInvoiceStatus = false;addNewInvoice = false;">Back</button>
+                <button class="btn btn-primary right" type="button" [hidden]="!addNewInvoice" (click)="addPart()">Add Part</button>
+            </ba-card>
+        </div>
+    </div>
