@@ -1,3 +1,4 @@
+// Ghouse GIT Chages
 export const PAGES_MENU = [
   {
     path: 'pages',
